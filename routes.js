@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const app = express();
 
+const expressLayouts = require("express-ejs-layouts");
 router.use(express.static('public'));
 
 
@@ -8,15 +10,18 @@ router.get('/',(req,res)=>{
     res.render('pages/home');
 });
 
+
 router.get('/about',(req,res)=>{
 
     res.render('pages/about');
 });
 
+
 router.get('/cadastro',(req,res)=>{ 
 
-    res.render('pages/cadastro',{users:users}); 
+    res.render('pages/cadastro',{users: users}); 
 });
+
 
 router.post('/cadastro/remove',(req,res)=>{
     
@@ -64,8 +69,17 @@ router.post('/cadastro/update',(req,res)=>{
     console.log("Dados recebidos: ",req.body);
 });
 
-router.get('/cadastro/list',(req,res)=>{
+global.usersList =[];
+router.get('/list', (req, res) => {
+  res.render('pages/list');
+
+  console.log("Acessou a lista / Lista:");
+  for (let cont=0;cont<20;cont++){
+    usersList[cont] = users[cont];
+    console.log(JSON.stringify(usersList[cont]));
+}
 });
+
 
 router.post('/cadastro/add',(req,res)=>{
     let user={name:"",email:"",address:"",heigth:"",age:"",vote:""};
@@ -80,13 +94,16 @@ router.post('/cadastro/add',(req,res)=>{
     users.push(user);
     console.log("Usuário cadastrado: ",user);
     console.log("Lista dos usuários: ",users); 
-    res.sendStatus(200);
-    res.status(200).json({
-        status:'sucess',
-        data: `Usuário ${user} foi adiocionado com sucesso!`
-    });
+    //res.sendStatus(200);
+    //res.status(200).json({
+    //    status:'sucess',
+    //    data: `Usuário ${user} foi adiocionado com sucesso!`
+    //});
 
 });
 
+//router.get('/cadastro/list',(req,res)=>{
+//    res.render('pages/list');
+//});
+
 module.exports = router;
-   

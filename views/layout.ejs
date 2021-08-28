@@ -1,35 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>First App</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/
-    css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css%22%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css"> 
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-inverse">
-            <ul class="nav nav-bar-nav">
+    <h3 class="title">First App</h3>
+
+    <header class="header">
+        <nav>
+            <ul class="menu">
                 <li><a href="/">Home</a></li>
 
                 <li><a href="/cadastro">Cadastro</a></li>
 
-                <li><a href="/about">Sobre</a></li>
+                <li><a href="/list">Lista de Usuários</a></li>
+
+                <li><a href="/about">Sobre</a></li>  
             </ul>
         </nav>
     </header>
 
     <main>
-        <div class="container">
+        <div class="body">
             <%-body%>
         </div>
     </main>
 
-    <footer>
-        EJS
+    <footer class="foot">
+        <div class="p-2  flex-grow-1 small text-white">
+            Angelo Lucas Freitas Lima, <i>Copyleft</i> - Todos os direitos reservados - Página sob licença <a
+                class="text-light" href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU Public License version
+                3.0</a>
+        </div>
+
     </footer>
+
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+
 </html>

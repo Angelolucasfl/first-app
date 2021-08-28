@@ -1,0 +1,112 @@
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html{
+    font-family: 'Montserrat', sans-serif;
+}
+.show{
+    display:inline-flexbox;
+}
+.hidden{
+    display:none;
+}
+
+.copyleft {
+    display:inline-block;
+    transform: rotate(180deg);
+  }
+
+body, ul, li{
+   margin: 0px; 
+   padding: 0px;
+   list-style: none;
+   font-size: 1.2rem;
+   font-family: Arial;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.title{
+    text-align: center;
+}
+.header{
+    background: dodgerblue;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+}
+
+.menu{
+    display: flex;
+}
+
+.menu li{
+    margin-left: 10px;
+}
+
+.menu li a{
+    display: block;
+    padding: 10px;
+}
+
+.body{
+    text-align: center;
+    color: black;
+}
+.body a{
+    color: black;
+    text-decoration: black;
+}
+
+#_name, #_email, #_address, #_height, #_age, #_vote {
+    display: grid;
+    width: 800px;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+    grid-gap: 20px;
+    padding: 5px;
+}
+
+.btn {
+    background: dodgerblue;
+    display: grid;
+    width: 600px;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.body label{
+    display: grid;
+    width: 800px;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+    grid-gap: 300px;
+    padding: 5px;
+}
+
+.body tr th{
+    background: dodgerblue;
+}
+
+.body th{
+    width: 600px;
+    margin: 0 auto;
+    grid-gap: 300px;
+    padding: 10px;
+}
+
+
+
+.foot{
+    background: dodgerblue;
+    text-align: center;
+    margin-top: 30px;
+    padding: 30px;
+
+}
