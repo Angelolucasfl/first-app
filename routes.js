@@ -61,7 +61,7 @@ router.post('/cadastro/update',(req,res)=>{
     users[req.body.id].email=req.body.email;
     users[req.body.id].address=req.body.address;
     users[req.body.id].age=req.body.age;
-    users[req.body.id].heigth=req.body.heigth;
+    users[req.body.id].height=req.body.height;
     users[req.body.id].vote=req.body.vote;
 
 
@@ -82,12 +82,12 @@ router.get('/list', (req, res) => {
 
 
 router.post('/cadastro/add',(req,res)=>{
-    let user={name:"",email:"",address:"",heigth:"",age:"",vote:""};
+    let user={name:"",email:"",address:"",height:"",age:"",vote:""};
 
     user.name = req.body._name;
     user.email = req.body._email;
     user.address = req.body._address;
-    user.heigth = req.body._heigth;
+    user.height = req.body._height;
     user.age = req.body._age;
     user.vote = req.body._vote;
 
