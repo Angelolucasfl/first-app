@@ -2,13 +2,28 @@ const express = require("express");
 const app = express();
 const routes = require("./routes");
 const expressLayouts = require("express-ejs-layouts");
+const { urlencoded } = require("express");
 
-const port = 3030;
+
+const port=3030;
 const address = "localhost";
 
-//ativa o uso do ejs e do express-ejs-layouts
+const utils = require("./utils");
+
+const faker = require("faker"); 
+
+let toggleBol=true;
+global.users =[];
+for (let cont=0;cont<20;cont++){
+    users.push({name:faker.name.findName(),email:faker.internet.email(),address:faker.address.streetAddress(),age:utils.getRandomByInterval(15,50,true),height:utils.getRandomByInterval(1.50,1.70,false).toFixed(2),vote:toggleBol});
+    toggleBol=!toggleBol;
+}
+
 app.set('view engine','ejs');
 app.use(expressLayouts);
+
+app.use(express.urlencoded({extended:false})); 
+app.use(express.json()); 
 
 app.use('/',routes);
 

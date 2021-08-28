@@ -1,0 +1,72 @@
+<%- contentFor( 'body' ) %>
+
+<div class="table-responsive-xl ">
+    <h2>Usuários Cadastrados</h2>
+    <p>Lista de usuários Cadastrados no sistema.</p>            
+    <table class="table table-hover bg-light" id="list">
+        <thead class="thead-dark">
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Endereço</th>
+            <th>Idade</th>
+            <th>Altura</th>
+            <th>Vota?</th>
+            <th>Editar</th>
+            <th>Remover</th>
+        </tr>
+        </thead>
+        <tbody>
+              
+
+            <% let linkRemove="/cadastro/remove/"; %>
+            <% let linkUpdate="/cadastro/update/"; %>
+
+            <% if(users.length >0){%>
+                <% for(let index=0;index<users.length;index++){ %>
+                    <tr data-index-row="<%= index %>">
+                        
+                    <td data-index-row="<%=index%>">
+                        <span  class="show"><%= users[index].name %></span>
+                        <input type="text" name="name"  class="hidden" value="<%= users[index].name %>">
+                    </td>
+                    <td data-index-row="<%=index%>">
+                        <span  class="show"><%= users[index].email %></span>
+                        <input type="email" name="email"  class="hidden" value="<%= users[index].email %>">
+                    </td>
+                    <td data-index-row="<%=index%>">
+                        <span  class="show"><%= users[index].address %></span>
+                        <input type="text" name="address"  class="hidden" value="<%= users[index].address %>">
+                    </td>
+                    <td data-index-row="<%=index%>">
+                        <span  class="show"><%= users[index].age %></span>
+                        <input type="text" name="age"  class="hidden" value="<%= users[index].age %>">
+                        
+                    </td>
+                    <td data-index-row="<%=index%>">
+                        <span  class="show"><%= users[index].height %></span>
+                        <input type="number" name="height" min="0" step="0.01" class="hidden" value="<%= users[index].height %>">
+                        
+                    </td>
+                    <td data-index-row="<%=index%>">
+                        <span  class="show"><%= users[index].vote %></span>
+                        <input type="text" name="vote" class="hidden" value="<%= users[index].vote %>">
+                        
+                    </td>
+                    <td data-index-row="<%=index%>" class="hidden" data-index-row="<%=index%>">
+                        <input type="button" value="Atualizar" class="hidden" >
+                    </td>
+                    <td  data-index-row="<%= index %>">
+                        <a href="#" onclick="update('<%=index%>','<%= linkUpdate %>')" class="show"><i class="fas fa-pen"></i></a>  
+                    </td> 
+                    
+                    <td  data-index-row="<%= index %>">
+                        <a href="#" class="show" onclick="remove('<%=index %>','<%=users[index].name %>','<%=linkRemove%>')"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                    </tr>
+                <% } //for %>
+            <% }else{%>
+                <tr><td colspan="7"><p class="bg-info text-white">Nenhum dado cadastrado</p></td></tr>
+            <%} //If-Else %>   
+        </tbody>
+    </table>
