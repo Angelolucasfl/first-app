@@ -5,6 +5,9 @@ const app = express();
 const expressLayouts = require("express-ejs-layouts");
 router.use(express.static('public'));
 
+router.get('/listagem', (req,res)=>{
+    res.json(users);
+});
 
 router.get('/',(req,res)=>{ 
     res.render('pages/home');
