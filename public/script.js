@@ -67,21 +67,7 @@ function update(index,link){
 
         http.onload = ()=>{ 
 
-            /*
-            readyState:
-            0: request not initialized
-            1: server connection established
-            2: request received
-            3: processing request
-            4: request finished and response is ready
-            status:
-            200: "OK"
-            403: "Forbidden"
-            404: "Page not found"
-            */
-            // baseado nos valores acima apresentados, o codigo abaixo mostra o que foi enviado pelo servidor como resposta ao envio de dados. No caso, se o request foi finalizado e o response foi recebido, a mensagem recebida do servidor eh mostrada no console do navegador. esse codigo foi feito apenas para verificar se tudo ocorreu bem no envio
-
-            if (http.readyState === 4 && http.status === 200) { //testa se o envio foi bem sucedido
+            if (http.readyState === 4 && http.status === 200) { 
                 for(let cont=0;cont<spans.length;cont++){
                     if(spans[cont].className=="hidden"){
                         spans[cont].innerHTML = inputs[cont].value;
@@ -91,11 +77,11 @@ function update(index,link){
                     }
                 }
 
-                //esconde os campos de preenchimento para o cadastro
+               
                 for(let cont=0;cont<inputs.length;cont++){
                     if(inputs[cont].className=="show"){
                         inputs[cont].className="hidden";
-                        if(inputs[cont].disabled==false){//habilita novamente os inputs para escrita
+                        if(inputs[cont].disabled==false){
                             inputs[cont].disabled=true;
                         }
                     }
@@ -145,18 +131,94 @@ function add(data){
 }
 
 function list(){
-    let tableList = document.getElementById("list");
+    let datas;
+ 
+    const http = new XMLHttpRequest();
 
-    let tr = document.createElement("tr");
-    let td = document.createElement("td");
-    let span = document.createElement("span");
-    let cont;
-        td.setAttribute(`data-index-row=${cont}`);
-        span.innerHTML =  Object.keys(datas[cont])[0] 
-        span.className="show";
-        td.appendChild(span);
-        tr.appendChild(td);
-        
-        tableList.appendChild(tr);
+    http.onreadystatechange = () => {
+        if(http.readyState == 4 && http.status == 200) {
+            datas = JSON.parse(http.response)
+            const tableKeys = Object.keys(datas[0]) 
+
+            for(let j=0; j<datas.length; j++){    
+                let tableList = document.getElementById("list");
+                let tr = document.createElement("tr"); 
+                
+                for(let i = 0; i<tableKeys.length; i++){
+                    let td = document.createElement("td");
+                    let input = document.createElement("input")
+                    let span = document.createElement("span");
+
+                    td.setAttribute("data-index-row", j);
+
+                    span.innerHTML =  Object.values(datas[j])[i]
+                    span.className="show";
+
+                    input.setAttribute("type", "text");
+                    input.setAttribute("name", tableKeys[i])
+                    input.setAttribute("value", Object.values(datas[j])[i])
+                    input.className="hidden";
+
+                    td.appendChild(span);
+                    td.appendChild(input);
+                    tr.appendChild(td);  
+                }
+
+
+                let td = document.createElement("td");
+                let input = document.createElement("input");
+
+                td.setAttribute("data-index-row", j);
+                input.setAttribute("type", "button");
+                input.setAttribute('onclick', "window.location.reload()");
+                input.setAttribute("value", "atualizar");
+                td.className = "hidden"
+                input.className = "hidden";
+
+                td.appendChild(input);
+                tr.appendChild(td);
+
+
+                let td1 = document.createElement("td");
+                let a1 = document.createElement("a");
+                let i1 = document.createElement("i");
+
+                td1.setAttribute("data-index-row", j);
+                a1.setAttribute("href", "#");
+                a1.setAttribute('onclick', `update(${j}, '/cadastro/update/')`)
+                a1.className = "show";
+                i1.className = "fas fa-pen";
+
+                a1.appendChild(i1)
+                td1.appendChild(a1)
+                tr.appendChild(td1);
+
+                
+                let td2 = document.createElement("td");
+                let a2 = document.createElement("a");
+                let i2 = document.createElement("i");
+                console.log(`remove(${j}, '${datas[j].name}', '/cadastro/remove/')`)
+                td2.setAttribute("data-index-row", j);
+                a2.setAttribute("href", "#");
+                a2.setAttribute('onclick', `remove(${j}, '${datas[j].name}', '/cadastro/remove/'); window.location.reload()`)
+                a2.className = "show";
+                i2.className = "fas fa-trash-alt";
+
+                a2.appendChild(i2)
+                td2.appendChild(a2)
+                tr.appendChild(td2);
+
+                tableList.appendChild(tr);
+                
+            }
+        }
+    }
+
+    http.open("GET", "/listagem", true);
+
+    http.send();
+    
 
 }
+   
+list()
